@@ -52,6 +52,17 @@ const getAllUsers = asyncHandler(async (req, res) =>{
     } catch (error) {
         throw new Error(error);
     }
+});
+
+/* get a user */
+const getAUser = asyncHandler(async (req, res) =>{
+    const { id } = req.params;
+    try {
+        const getProfile = await User.findById(id);
+        res.status(200).json({ status: true, message: "User Found", getProfile })
+    } catch (error) {
+        throw new Error(error);
+    }
 })
 
 /* update a user profile*/
@@ -79,4 +90,11 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { registerAUser, loginUser, getAllUsers, updateUser, deleteUser };
+module.exports = { 
+    registerAUser, 
+    loginUser, 
+    getAllUsers, 
+    getAUser,
+    updateUser, 
+    deleteUser,
+ };
